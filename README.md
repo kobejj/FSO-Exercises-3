@@ -1,59 +1,81 @@
-# FSO Phonebook Backend
+# Phonebook API
 
-This project is the backend for a simple phonebook application. It is built using Node.js, Express, and uses the Morgan middleware for logging and CORS middleware for enabling Cross Origin Resource Sharing.
+This is a simple Phonebook API built with Node.js and Express, using MongoDB as the database for storing data.
+
+Live Application: [https://fso-exercises-3.onrender.com/](https://fso-exercises-3.onrender.com/)
 
 ## Features
 
-- List all persons in the phonebook
-- Fetch single person's information
-- Add a new person to the phonebook
-- Delete a person from the phonebook
-- Logs data about every HTTP request
+1. Fetch all persons.
+2. Fetch a single person by ID.
+3. Delete a person by ID.
+4. Update person details by ID.
+5. Create a new person.
 
-## Installation
+## Prerequisites
 
-1. Clone this repository
+- Node.js and npm installed.
+- MongoDB database connection.
 
-```sh
-git clone https://github.com/<username>/fso-phonebook-backend.git
+## Setup
+
+First, clone the repository:
+
+```
+git clone <repository_url>
 ```
 
-2. Navigate to the repository
+Then, move into the directory:
 
-```sh
-cd fso-phonebook-backend
+```
+cd <repository_dir>
 ```
 
-3. Install the dependencies
+Install the necessary packages:
 
-```sh
+```
 npm install
 ```
 
-4. Start the server
+Create a `.env` file in the root directory with the following content:
 
-```sh
+```
+PORT=<your_desired_port>
+DB_URL=<your_mongodb_connection_url>
+```
+
+Make sure to replace `<your_desired_port>` and `<your_mongodb_connection_url>` with your preferred port number and MongoDB connection string respectively.
+
+## Usage
+
+To start the application, use the command:
+
+```
 npm start
 ```
 
-Your server should now be running at `http://localhost:3001`.
+This will start the server at the port you provided in the `.env` file.
 
-## Endpoints
+## API Endpoints
 
-- `GET /api/persons` - Returns all persons
-- `GET /api/persons/:id` - Returns a single person by id
-- `POST /api/persons` - Adds a new person to the phonebook
-- `DELETE /api/persons/:id` - Deletes a person from the phonebook by id
-- `GET /info` - Returns the count of persons in the phonebook and the current server time
+1. `GET /api/persons`: Fetch all persons.
+2. `GET /api/persons/:id`: Fetch a single person by ID.
+3. `DELETE /api/persons/:id`: Delete a person by ID.
+4. `PUT /api/persons/:id`: Update a person's details. The request body must contain `name` and `number`.
+5. `POST /api/persons`: Create a new person. The request body must contain `name` and `number`.
 
-## Live Application
+## Error Handling
 
-The application is hosted on Render at [https://fso-exercises-3.onrender.com/](https://fso-exercises-3.onrender.com/)
+The application uses a custom error handler for dealing with errors. If there is an error during a request, the error handler will send an appropriate HTTP status code and message.
 
-## Contributing
+## Logging
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+The application uses `morgan` for logging HTTP requests. The log format is `:method :url :status :res[content-length] - :response-time ms :body`.
 
----
+## Testing
 
-You can add more sections like 'Testing', 'Known Issues', 'Future Scope' etc based on your requirements. Also, remember to replace `<username>` with your actual GitHub username.
+No tests are provided in the repository. If you wish to add tests, you could add them in a `test` directory, and use a testing framework like Jest or Mocha.
+
+Note: Always remember to ensure that your MongoDB database is secure. Do not expose your MongoDB connection string and always use a password for your MongoDB database.
+
+Save this content as `README.md` in the root directory of your project. The `README.md` file is typically used by GitHub and other version control platforms to display a descriptive summary of the project. The `.md` extension stands for Markdown, which is a lightweight markup language for creating formatted text.
